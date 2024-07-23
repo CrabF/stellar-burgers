@@ -6,14 +6,16 @@ import {
   useSelector as selectorHook
 } from 'react-redux';
 
-const rootReducer = () => {}; // Заменить на импорт настоящего редьюсера
+import  ingredientsSliceReducer  from './feature/ingredientsSlice'
+
+// const rootReducer = () => {}; // Заменить на импорт настоящего редьюсера
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: ingredientsSliceReducer,
   devTools: process.env.NODE_ENV !== 'production'
 });
 
-export type RootState = ReturnType<typeof rootReducer>;
+export type RootState = ReturnType<typeof ingredientsSliceReducer>;
 
 export type AppDispatch = typeof store.dispatch;
 
@@ -21,3 +23,7 @@ export const useDispatch: () => AppDispatch = () => dispatchHook();
 export const useSelector: TypedUseSelectorHook<RootState> = selectorHook;
 
 export default store;
+
+
+
+//Это функциональность в приложении: ингредиенты, конструктор, общая лента, лента в профиле, создание заказа, авторизация
