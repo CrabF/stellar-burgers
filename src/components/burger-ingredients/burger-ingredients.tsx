@@ -9,7 +9,7 @@ import { useSelector } from '../../services/store';
 
 export const BurgerIngredients: FC = () => {
 
-  const {ingredients} = useSelector(state => state);
+  const {ingredients} = useSelector(state => state.ingredients);
 
   /** TODO: взять переменные из стора */
   const buns: TIngredient[] = ingredients.filter((ingredient)=>{

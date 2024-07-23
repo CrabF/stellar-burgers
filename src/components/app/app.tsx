@@ -4,10 +4,11 @@ import styles from './app.module.css';
 import { Routes, Route } from 'react-router-dom';
 import { UseDispatch, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { getIngredients } from '../../services/feature/ingredientsSlice';
+import { getIngredients } from '../../services/slices/ingredientsSlice';
 
 import { AppHeader, BurgerConstructor, BurgerConstructorElement, IngredientsCategory, Modal, OrderInfo, ProtectedRoute } from '@components';
 import { AppDispatch } from 'src/services/store';
+
 
 const App = () => {
   
@@ -15,6 +16,10 @@ const App = () => {
   useEffect(()=>{
     dispatch(getIngredients())
   }, [dispatch]);
+
+  // useEffect(()=>{
+  //   dispatch(getFeedsApi())
+  // }, [dispatch]);
   
 
 
