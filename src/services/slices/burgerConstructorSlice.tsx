@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { TIngredient, TOrder } from "@utils-types";
-import { type } from "os";
 
 interface TburgerConstructorState {
   bun: TBunIngredient | null,

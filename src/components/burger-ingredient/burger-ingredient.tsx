@@ -10,6 +10,7 @@ import { addIngredients, addBun } from '../../services/slices/burgerConstructorS
 export const BurgerIngredient: FC<TBurgerIngredientProps> = memo(
   ({ ingredient, count }) => {
     const location = useLocation();
+    console.log(location)
 
     const dispatch = useDispatch();
 
