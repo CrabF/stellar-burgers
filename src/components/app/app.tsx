@@ -2,17 +2,17 @@ import { ConstructorPage, Feed, ForgotPassword, Login, NotFound404, Profile, Pro
 import '../../index.css';
 import styles from './app.module.css';
 import { Routes, Route } from 'react-router-dom';
-import { UseDispatch, useDispatch } from 'react-redux';
+
 import { useEffect } from 'react';
 import { getIngredients } from '../../services/slices/ingredientsSlice';
 
 import { AppHeader, BurgerConstructor, BurgerConstructorElement, IngredientDetails, IngredientsCategory, Modal, OrderInfo, ProtectedRoute } from '@components';
-import { AppDispatch } from 'src/services/store';
+import { useDispatch } from '../../services/store';
 
 
 const App = () => {
   
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(getIngredients())
   }, [dispatch]);
