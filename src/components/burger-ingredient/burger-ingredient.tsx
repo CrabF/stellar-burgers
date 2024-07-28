@@ -5,21 +5,27 @@ import { BurgerIngredientUI } from '@ui';
 import { TBurgerIngredientProps } from './type';
 import { useDispatch } from '../../services/store';
 import { addIngredients, addBun } from '../../services/slices/burgerConstructorSlice';
+import { nanoid } from '@reduxjs/toolkit';
+import { TConstructorIngredient } from '@utils-types';
+
 
 
 export const BurgerIngredient: FC<TBurgerIngredientProps> = memo(
   ({ ingredient, count }) => {
     const location = useLocation();
-    console.log(location)
-
     const dispatch = useDispatch();
 
     const handleAdd = () => {
+      const constructorIngredient: TConstructorIngredient = {
+        ...ingredient,
+        id: nanoid()
+      };
+
       dispatch(()=>{
         if(ingredient.type === 'bun') {
           dispatch(addBun({ingredient}))
         } else {
-          dispatch(addIngredients({ingredient}))
+          dispatch(addIngredients({ingredient: constructorIngredient}));
         }
       });
     };

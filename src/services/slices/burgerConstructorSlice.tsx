@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TIngredient, TOrder } from "@utils-types";
+import { TConstructorIngredient, TIngredient, TOrder } from "@utils-types";
 
 interface TburgerConstructorState {
   bun: TBunIngredient | null,
-  ingredients: TIngredient[],
+  ingredients: TConstructorIngredient[],
   orderRequest: boolean,
   orderModalData: TOrder | null
 }
@@ -24,15 +24,20 @@ const burgerConstructorSlice = createSlice({
   initialState,
   reducers: {
     addIngredients: (state, action)=>{
-      state.ingredients.push(action.payload.ingredient)
+        state.ingredients.push(action.payload.ingredient);
     },
     addBun: (state, action)=>{
-      state.bun = action.payload.ingredient
+      state.bun = action.payload.ingredient;
+    },
+    deleteIngredient: (state, action)=>{
+      state.ingredients = state.ingredients.filter((item)=>{
+        return item.id != action.payload.id
+      })
     }
   }
 })
 
-export const { addIngredients, addBun } = burgerConstructorSlice.actions;
+export const { addIngredients, addBun, deleteIngredient } = burgerConstructorSlice.actions;
 
 export default burgerConstructorSlice.reducer;
 
