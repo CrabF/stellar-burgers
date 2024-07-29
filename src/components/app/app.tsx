@@ -8,6 +8,7 @@ import { getIngredients } from '../../services/slices/ingredientsSlice';
 
 import { AppHeader, BurgerConstructor, BurgerConstructorElement, IngredientDetails, IngredientsCategory, Modal, OrderInfo, ProtectedRoute } from '@components';
 import { useDispatch } from '../../services/store';
+import { checkUserAuth } from '../../services/slices/userAuthSlice';
 
 
 const App = () => {
@@ -16,6 +17,10 @@ const App = () => {
   useEffect(()=>{
     dispatch(getIngredients())
   }, [dispatch]);
+
+  useEffect(()=>{
+    dispatch(checkUserAuth())
+  }, [dispatch])
 
   return (
     <>

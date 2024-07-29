@@ -3,12 +3,14 @@ import { TConstructorIngredient, TIngredient } from '@utils-types';
 import { BurgerConstructorUI } from '@ui';
 import { useSelector } from '../../services/store'
 import { getOrdersApi } from '@api';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 export const BurgerConstructor: FC = () => {
 
   const {ingredients, bun, orderRequest, orderModalData} = useSelector(state => state.burgerConstructor)
 
+  const { user } = useSelector(state => state.userAuth);
 
   const constructorItems = {
     bun,
@@ -21,9 +23,14 @@ export const BurgerConstructor: FC = () => {
 
   // const orderModalData = null;
 
+  const navigate = useNavigate(); 
+  
   const onOrderClick = () => {
-    // if (!constructorItems.bun || orderRequest) return;
-    getOrdersApi()
+    if (!user) {
+      navigate('/login');
+    } else {
+      getOrdersApi();
+    }
   };
 
 

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from '../../services/store';
 import { registerUser } from '../../services/slices/userAuthSlice';
 import { Navigate } from 'react-router-dom';
 import { setCookie } from '../../utils/cookie';
+import { Preloader } from '@ui';
 
 export const Register: FC = () => {
   const [userName, setUserName] = useState('');
@@ -11,20 +12,27 @@ export const Register: FC = () => {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
-  const info = useSelector(state=>state.userAuth);
+  const {isAuthenticated, user, loginUserRequest} = useSelector(state=>state.userAuth);
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     dispatch(registerUser({ name:userName, email, password}));
+    console.log(user)
   };
 
-  if (info.isAuthenticated) {
+  if (loginUserRequest){
+    return <Preloader />
+  }
+
+  if (isAuthenticated && user) {
     return (
         <Navigate
           to={'/'}
         />
       );
-}
+  }
+
+
 
   return (
     <RegisterUI

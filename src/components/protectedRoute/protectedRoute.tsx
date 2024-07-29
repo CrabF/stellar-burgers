@@ -20,15 +20,15 @@ export const ProtectedRoute = ({children}:ProtectedRouteProps): React.JSX.Elemen
 
   useEffect(()=>{
     dispatch(checkUserAuth())
-  }, [])
+  }, [dispatch])
   
   if (!isAuthChecked) {
     return <Preloader />;
   }
 
-  if (!user) {
-    return <Navigate replace to='/login'/>;
-  }
+  // if (!user) {
+  //   return <Navigate replace to='/login'/>;
+  // }
   
   return children;
 }
