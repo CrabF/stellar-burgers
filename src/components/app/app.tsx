@@ -35,10 +35,9 @@ const App = () => {
         <Route path='/profile' element={<ProtectedRoute><Profile /></ProtectedRoute>}></Route>
         <Route path='/profile/orders' element={<ProtectedRoute><ProfileOrders /></ProtectedRoute>}></Route>
         <Route path='*' element={<NotFound404 />}></Route>
-        {/* <Route path='/feed/:number' element={<Modal><OrderInfo /></Modal>}></Route> */}
-        
+        <Route path='/feed/:number' element={<Modal title={''}><OrderInfo /></Modal>}></Route>
         <Route path='/ingredients/:id' element={<Modal title=''><IngredientDetails /></Modal>}> </Route>
-        {/* <Route path='/profile/orders/:number' element={<Modal><OrderInfo /></Modal>}></Route> */}
+        <Route path='/profile/orders/:number' element={<Modal title={''}><OrderInfo /></Modal>}></Route>
       </Routes>
     </>
   );

@@ -23,7 +23,3 @@ export const useDispatch: () => AppDispatch = () => dispatchHook();
 export const useSelector: TypedUseSelectorHook<RootState> = selectorHook;
 
 export default store;
-
-
-
-//Это функциональность в приложении: ингредиенты, конструктор, общая лента, лента в профиле, создание заказа, авторизация

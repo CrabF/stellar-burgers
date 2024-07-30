@@ -33,11 +33,17 @@ const burgerConstructorSlice = createSlice({
       state.ingredients = state.ingredients.filter((item)=>{
         return item.id != action.payload.id
       })
+    },
+    addOrderRequest: (state, action) =>{
+      state.orderRequest = action.payload
+    },
+    addModalData: (state, action) =>{
+      state.orderModalData = action.payload
     }
   }
 })
 
-export const { addIngredients, addBun, deleteIngredient } = burgerConstructorSlice.actions;
+export const { addIngredients, addBun, deleteIngredient, addOrderRequest, addModalData } = burgerConstructorSlice.actions;
 
 export default burgerConstructorSlice.reducer;
 

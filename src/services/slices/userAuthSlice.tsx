@@ -100,15 +100,3 @@ const userAuthSlice = createSlice({
 
 export default userAuthSlice.reducer;
 export const { authChecked, setUserInfo, isUserAuthenticated, isUserLogin, setLoginError } = userAuthSlice.actions;
-
-// Wjv-Xxr-pGB-TyG
-
-// {
-//   "success": true,
-//   "user": {
-//       "email": "ww@ww.wwsdfsdfasdasd",
-//       "name": "aaaasdad"
-//   },
-//   "accessToken": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YTc3N2Y0MTE5ZDQ1MDAxYjRmYzRiMiIsImlhdCI6MTcyMjI1MTI1MiwiZXhwIjoxNzIyMjUyNDUyfQ.6CuGKsCn4brhcMGJqLzd-d4jb6qI_AwVEkYbxQi1Mqw",
-//   "refreshToken": "3a1f50c736408d83e8541935d52c64181d15a0baa2dac33861f62258e91139d83d449bd065b1782e"
-// }

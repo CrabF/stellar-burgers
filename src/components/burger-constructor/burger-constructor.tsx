@@ -1,17 +1,17 @@
 import { FC, useMemo } from 'react';
 import { TConstructorIngredient, TIngredient } from '@utils-types';
-import { BurgerConstructorUI } from '@ui';
+import { BurgerConstructorUI, Preloader } from '@ui';
 import { useDispatch, useSelector } from '../../services/store'
-import { getOrdersApi, refreshToken } from '@api';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { checkUserAuth } from '../../services/slices/userAuthSlice';
+import { orderBurgerApi } from '@api';
+import { Link, useNavigate } from 'react-router-dom';
+import { addModalData, addOrderRequest } from '../../services/slices/burgerConstructorSlice';
 
 
 export const BurgerConstructor: FC = () => {
 
   const {ingredients, bun, orderRequest, orderModalData} = useSelector(state => state.burgerConstructor)
 
-  const { user, isAuthChecked, isAuthenticated } = useSelector(state => state.userAuth);
+  const { isAuthenticated } = useSelector(state => state.userAuth);
 
   const dispatch = useDispatch();
   const constructorItems = {
@@ -21,6 +21,7 @@ export const BurgerConstructor: FC = () => {
     orderModalData
   };
 
+  
   // const orderRequest = false;
 
   // const orderModalData = null;
@@ -29,11 +30,35 @@ export const BurgerConstructor: FC = () => {
   
   const onOrderClick = () => {
     if(isAuthenticated){
-      getOrdersApi()
+
+      const ingIDs: string[] = [];
+      ingredients.forEach((ingredient)=>{
+        ingIDs.push(ingredient._id)
+      })
+
+      if(bun) {
+        ingIDs.push(bun._id);
+        ingIDs.push(bun._id)
+      }
+
+      dispatch(addOrderRequest(true));
+
+      orderBurgerApi(ingIDs)
+        .then((data)=>{
+          if(data.success){
+            dispatch(addModalData(data.order))
+            dispatch(addOrderRequest(false));
+          }
+        })
+        .catch((error)=>{
+          console.log(error)
+        })
     } else {
       navigate('/login')
     }
   };
+
+ 
 
 
   const closeOrderModal = () => {
