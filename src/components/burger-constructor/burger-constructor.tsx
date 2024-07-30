@@ -1,17 +1,19 @@
 import { FC, useMemo } from 'react';
 import { TConstructorIngredient, TIngredient } from '@utils-types';
 import { BurgerConstructorUI } from '@ui';
-import { useSelector } from '../../services/store'
-import { getOrdersApi } from '@api';
+import { useDispatch, useSelector } from '../../services/store'
+import { getOrdersApi, refreshToken } from '@api';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { checkUserAuth } from '../../services/slices/userAuthSlice';
 
 
 export const BurgerConstructor: FC = () => {
 
   const {ingredients, bun, orderRequest, orderModalData} = useSelector(state => state.burgerConstructor)
 
-  const { user } = useSelector(state => state.userAuth);
+  const { user, isAuthChecked, isAuthenticated } = useSelector(state => state.userAuth);
 
+  const dispatch = useDispatch();
   const constructorItems = {
     bun,
     ingredients, 
@@ -26,10 +28,10 @@ export const BurgerConstructor: FC = () => {
   const navigate = useNavigate(); 
   
   const onOrderClick = () => {
-    if (!user) {
-      navigate('/login');
+    if(isAuthenticated){
+      getOrdersApi()
     } else {
-      getOrdersApi();
+      navigate('/login')
     }
   };
 

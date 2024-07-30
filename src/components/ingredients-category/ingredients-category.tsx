@@ -9,7 +9,6 @@ export const IngredientsCategory = forwardRef<
 >(({ title, titleRef, ingredients }, ref) => {
 
   const { bun, ingredients: constructorIngredients } = useSelector(state => state.burgerConstructor);
-  console.log(constructorIngredients)
 
   const burgerConstructor = {
     bun,

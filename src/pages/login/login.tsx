@@ -1,8 +1,10 @@
 import { FC, SyntheticEvent, useState } from 'react';
 import { LoginUI } from '@ui-pages';
 import { useDispatch, useSelector } from '../../services/store';
-import { checkUserAuth } from '../../services/slices/userAuthSlice';
+import { TError, setLoginError, setUserInfo } from '../../services/slices/userAuthSlice';
 import { useNavigate } from 'react-router-dom';
+import { loginUserApi } from '@api';
+import { setCookie } from '../../utils/cookie';
 
 export const Login: FC = () => {
   const [email, setEmail] = useState('');
@@ -10,24 +12,25 @@ export const Login: FC = () => {
 
   const navigate = useNavigate(); 
   const dispatch = useDispatch();
-  const {user, isAuthChecked} = useSelector(state => state.userAuth)
+  const { loginUserError } = useSelector(state => state.userAuth)
 
-  const handleSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
-    dispatch(checkUserAuth());
+      loginUserApi({email, password})
+        .then((data)=>{
+          dispatch(setUserInfo(data.user));
+          setCookie('accessToken', data.accessToken);
+          localStorage.setItem('refreshToken', data.refreshToken);
+          navigate('/');
+        })
+        .catch((error: TError)=>{
+          dispatch(setLoginError(error.message))
+        })
   };
-
-
-  if(user){
-    navigate('/');
-  } else {
-    console.log('хз')
-    console.log(isAuthChecked)
-  }
 
   return (
     <LoginUI
-      errorText=''
+      errorText={loginUserError}
       email={email}
       setEmail={setEmail}
       password={password}
