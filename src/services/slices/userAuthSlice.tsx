@@ -19,8 +19,8 @@ export const checkUserAuth = createAsyncThunk(
   'user/checkUser',
   async (_, { dispatch }) => {    
     if (localStorage.getItem('refreshToken')) {
-      getUserApi().
-        then((data)=>{
+      getUserApi()
+        .then((data)=>{
           dispatch(setUserInfo(data.user));
           dispatch(authChecked(true));
           dispatch(isUserAuthenticated(true))

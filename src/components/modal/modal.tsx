@@ -3,23 +3,21 @@ import ReactDOM from 'react-dom';
 
 import { TModalProps } from './type';
 import { ModalUI } from '@ui';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const modalRoot = document.getElementById('modals');
 
 export const Modal: FC<TModalProps> = memo(({title, onClose, children }) => {
 
-  const params = useParams();
-
   const navigate = useNavigate();
   const closeModal = ()=>{
-    onClose && onClose();
+    onClose?.();
     navigate(-1)
   }
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
-      e.key === 'Escape';
+      e.key === 'Escape' && onClose?.();
     };
 
     document.addEventListener('keydown', handleEsc);

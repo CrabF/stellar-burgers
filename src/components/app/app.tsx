@@ -10,7 +10,6 @@ import { AppHeader, BurgerConstructor, BurgerConstructorElement, IngredientDetai
 import { useDispatch } from '../../services/store';
 import { checkUserAuth } from '../../services/slices/userAuthSlice';
 
-
 const App = () => {
   
   const dispatch = useDispatch();
@@ -20,7 +19,7 @@ const App = () => {
 
   useEffect(()=>{
     dispatch(checkUserAuth())
-  }, [dispatch])
+  }, [dispatch]);
 
   return (
     <>
@@ -36,7 +35,7 @@ const App = () => {
         <Route path='/profile/orders' element={<ProtectedRoute><ProfileOrders /></ProtectedRoute>}></Route>
         <Route path='*' element={<NotFound404 />}></Route>
         <Route path='/feed/:number' element={<Modal title={''}><OrderInfo /></Modal>}></Route>
-        <Route path='/ingredients/:id' element={<Modal title=''><IngredientDetails /></Modal>}> </Route>
+        <Route path='/ingredients/:id' element={<Modal title='Детали ингредиента'><IngredientDetails /></Modal>}> </Route>
         <Route path='/profile/orders/:number' element={<Modal title={''}><OrderInfo /></Modal>}></Route>
       </Routes>
     </>

@@ -39,11 +39,17 @@ const burgerConstructorSlice = createSlice({
     },
     addModalData: (state, action) =>{
       state.orderModalData = action.payload
+    },
+    clearConstructor: (state) =>{
+      state.bun = null;
+      state.ingredients = [],
+      state.orderModalData = null,
+      state.orderRequest = false
     }
   }
 })
 
-export const { addIngredients, addBun, deleteIngredient, addOrderRequest, addModalData } = burgerConstructorSlice.actions;
+export const { addIngredients, addBun, deleteIngredient, addOrderRequest, addModalData, clearConstructor } = burgerConstructorSlice.actions;
 
 export default burgerConstructorSlice.reducer;
 

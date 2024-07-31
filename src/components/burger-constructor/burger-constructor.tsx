@@ -4,7 +4,7 @@ import { BurgerConstructorUI, Preloader } from '@ui';
 import { useDispatch, useSelector } from '../../services/store'
 import { orderBurgerApi } from '@api';
 import { Link, useNavigate } from 'react-router-dom';
-import { addModalData, addOrderRequest } from '../../services/slices/burgerConstructorSlice';
+import { addModalData, addOrderRequest, clearConstructor } from '../../services/slices/burgerConstructorSlice';
 
 
 export const BurgerConstructor: FC = () => {
@@ -48,6 +48,7 @@ export const BurgerConstructor: FC = () => {
           if(data.success){
             dispatch(addModalData(data.order))
             dispatch(addOrderRequest(false));
+            dispatch(clearConstructor());
           }
         })
         .catch((error)=>{
@@ -58,11 +59,8 @@ export const BurgerConstructor: FC = () => {
     }
   };
 
- 
-
-
   const closeOrderModal = () => {
-
+    navigate('/')
   };
 
   const price = useMemo(
