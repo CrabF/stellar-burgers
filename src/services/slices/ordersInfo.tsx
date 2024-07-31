@@ -23,13 +23,7 @@ const initialState: TOrdersData & TIsLoading = {
 const ordersInfoSlice = createSlice({
   name: 'ordersInfo',
   initialState: initialState,
-  reducers: {
-    setOrdersInfo: (state, action: PayloadAction<TOrdersData>) => {
-      state.orders = action.payload.orders;
-      state.total = action.payload.total;
-      state.totalToday = action.payload.totalToday;
-    },
-  },
+  reducers: {},
   extraReducers(builder) {
     builder
       .addCase(getOrdersInfo.pending , (state, action) =>{
@@ -44,5 +38,5 @@ const ordersInfoSlice = createSlice({
   },
 })
 
-export const { setOrdersInfo } = ordersInfoSlice.actions;
+// export const {  } = ordersInfoSlice.actions;
 export default ordersInfoSlice.reducer;

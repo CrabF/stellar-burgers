@@ -6,12 +6,15 @@ import { TUser } from "@utils-types";
 export const registerUser = createAsyncThunk(
   "user/loginUser",
   async (data: TRegisterData)=>{
-   const info =  await registerUserApi(data);
-   if(info.success){
-    setCookie('accessToken', info.accessToken);
-    localStorage.setItem('refreshToken', info.refreshToken);
-   }
-   return info
+    return registerUserApi(data)
+      // .then((res)=>{
+      //   setCookie('accessToken', res.accessToken);
+      //   localStorage.setItem('refreshToken', res.refreshToken);
+        
+      // })
+      // .catch((error)=>{
+      //   console.log(error)
+      // })
   } 
 );
 
@@ -88,6 +91,8 @@ const userAuthSlice = createSlice({
             state.loginUserRequest = false;
             state.isAuthenticated = true;
             state.isAuthChecked = true;
+            setCookie('accessToken', action.payload.accessToken);
+            localStorage.setItem('refreshToken', action.payload.refreshToken);
           })
           .addCase(registerUser.rejected, (state, action)=>{
             state.loginUserRequest = false;

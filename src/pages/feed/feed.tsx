@@ -8,7 +8,6 @@ import { getOrdersInfo } from '../../services/slices/ordersInfo';
 export const Feed: FC = () => {
   /** TODO: взять переменную из стора */
   const { orders, isLoading } = useSelector(state=> state.ordersInfo);
-  
   const dispatch = useDispatch();
 
   useEffect(()=>{

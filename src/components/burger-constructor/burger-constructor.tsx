@@ -1,9 +1,9 @@
 import { FC, useMemo } from 'react';
-import { TConstructorIngredient, TIngredient } from '@utils-types';
-import { BurgerConstructorUI, Preloader } from '@ui';
+import { TConstructorIngredient } from '@utils-types';
+import { BurgerConstructorUI } from '@ui';
 import { useDispatch, useSelector } from '../../services/store'
-import { orderBurgerApi } from '@api';
-import { Link, useNavigate } from 'react-router-dom';
+import { orderBurgerApi, refreshToken } from '@api';
+import { useNavigate } from 'react-router-dom';
 import { addModalData, addOrderRequest, clearConstructor } from '../../services/slices/burgerConstructorSlice';
 
 
@@ -21,16 +21,11 @@ export const BurgerConstructor: FC = () => {
     orderModalData
   };
 
-  
-  // const orderRequest = false;
-
-  // const orderModalData = null;
-
   const navigate = useNavigate(); 
   
   const onOrderClick = () => {
     if(isAuthenticated){
-
+      
       const ingIDs: string[] = [];
       ingredients.forEach((ingredient)=>{
         ingIDs.push(ingredient._id)
@@ -42,24 +37,27 @@ export const BurgerConstructor: FC = () => {
       }
 
       dispatch(addOrderRequest(true));
-
-      orderBurgerApi(ingIDs)
-        .then((data)=>{
-          if(data.success){
-            dispatch(addModalData(data.order))
+      refreshToken()
+        .then(()=>{
+          orderBurgerApi(ingIDs)
+          .then((data)=>{
+            dispatch(addModalData(data.order));
             dispatch(addOrderRequest(false));
-            dispatch(clearConstructor());
-          }
-        })
-        .catch((error)=>{
-          console.log(error)
-        })
+          })
+          .catch((error)=>{
+            console.log(error)
+          })
+      })
+      .catch((error)=>{
+        console.log(error)
+      })
     } else {
       navigate('/login')
     }
   };
 
   const closeOrderModal = () => {
+    dispatch(clearConstructor());
     navigate('/')
   };
 

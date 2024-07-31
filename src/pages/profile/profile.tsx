@@ -1,8 +1,11 @@
 import { ProfileUI } from '@ui-pages';
 import { FC, SyntheticEvent, useEffect, useState } from 'react';
+import { useSelector } from '../../services/store';
 
 export const Profile: FC = () => {
   /** TODO: взять переменную из стора */
+  // const { user: oo } = useSelector(state=> state.userAuth);
+  // console.log(oo)
   const user = {
     name: '',
     email: ''
@@ -57,5 +60,5 @@ export const Profile: FC = () => {
     />
   );
 
-  return null;
+  // return null;
 };
