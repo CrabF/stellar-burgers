@@ -32,7 +32,7 @@ export const checkUserAuth = createAsyncThunk(
 interface TUserAuthState {
   isAuthChecked: boolean;
   isAuthenticated: boolean;
-  user: TUser | null;
+  user: TUser;
   loginUserError: string | undefined;
   loginUserRequest: boolean;
 }
@@ -45,7 +45,10 @@ export interface TError {
 const initialState: TUserAuthState = {
   isAuthChecked: false,
   isAuthenticated: false,
-  user: null,
+  user: {
+    email: '',
+    name: ''
+  },
   loginUserError: undefined,
   loginUserRequest: false
 };
@@ -56,7 +59,6 @@ const userAuthSlice = createSlice({
   reducers: {
     authChecked: (state, action) => {
       state.isAuthChecked = action.payload;
-      // state.isAuthenticated = true
     },
     setUserInfo: (state, action) => {
       state.user = action.payload;
@@ -72,6 +74,9 @@ const userAuthSlice = createSlice({
     },
     setUserLoginError: (state, action) => {
       state.loginUserError = action.payload;
+    },
+    updateUserInfo: (state, action) => {
+      state.user = action.payload;
     }
   },
   extraReducers(builder) {
@@ -104,5 +109,6 @@ export const {
   setUserInfo,
   isUserAuthenticated,
   isUserLogin,
-  setLoginError
+  setLoginError,
+  updateUserInfo
 } = userAuthSlice.actions;

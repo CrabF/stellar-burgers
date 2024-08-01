@@ -3,6 +3,7 @@ import { LoginUI } from '@ui-pages';
 import { useDispatch, useSelector } from '../../services/store';
 import {
   TError,
+  isUserAuthenticated,
   setLoginError,
   setUserInfo
 } from '../../services/slices/userAuthSlice';
@@ -23,6 +24,7 @@ export const Login: FC = () => {
     loginUserApi({ email, password })
       .then((data) => {
         dispatch(setUserInfo(data.user));
+        dispatch(isUserAuthenticated(true));
         setCookie('accessToken', data.accessToken);
         localStorage.setItem('refreshToken', data.refreshToken);
         navigate('/');
