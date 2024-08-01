@@ -9,15 +9,15 @@ export const Profile: FC = () => {
   const dispatch = useDispatch();
 
   const [userData, setUserData] = useState({
-    name: userInfo.name,
-    email: userInfo.email,
+    name: userInfo?.name || '',
+    email: userInfo?.email || '',
     password: ''
   });
 
   useEffect(() => {
     setUserData({
-      name: userInfo.name,
-      email: userInfo.email,
+      name: userInfo?.name || '',
+      email: userInfo?.email || '',
       password: userData.password
     });
   }, [userInfo]);

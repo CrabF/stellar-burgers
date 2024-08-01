@@ -11,8 +11,6 @@ export const registerUser = createAsyncThunk(
 export const checkUserAuth = createAsyncThunk(
   'user/checkUser',
   async (_, { dispatch }) => {
-    // localStorage.getItem('refreshToken')
-    // if(getCookie('accessToken'))
     if (getCookie('accessToken')) {
       getUserApi()
         .then((data) => {
@@ -32,7 +30,7 @@ export const checkUserAuth = createAsyncThunk(
 interface TUserAuthState {
   isAuthChecked: boolean;
   isAuthenticated: boolean;
-  user: TUser;
+  user: TUser | null;
   loginUserError: string | undefined;
   loginUserRequest: boolean;
 }
@@ -45,10 +43,7 @@ export interface TError {
 const initialState: TUserAuthState = {
   isAuthChecked: false,
   isAuthenticated: false,
-  user: {
-    email: '',
-    name: ''
-  },
+  user: null,
   loginUserError: undefined,
   loginUserRequest: false
 };
@@ -86,7 +81,6 @@ const userAuthSlice = createSlice({
         state.loginUserError = undefined;
       })
       .addCase(registerUser.fulfilled, (state, action) => {
-        // state.user = action.payload;
         state.user = action.payload.user;
         state.loginUserRequest = false;
         state.isAuthenticated = true;

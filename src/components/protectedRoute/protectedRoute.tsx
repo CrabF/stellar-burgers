@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from '../../services/store';
+import React from 'react';
+import { useSelector } from '../../services/store';
 import { Preloader } from '../ui/preloader/preloader';
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { checkUserAuth } from '../../services/slices/userAuthSlice';
-import { getUserApi } from '@api';
+import { Navigate, useLocation } from 'react-router-dom';
 
 type ProtectedRouteProps = {
   onlyUnAuth?: boolean;
@@ -19,13 +17,7 @@ export const ProtectedRoute = ({
   const { isAuthChecked, isAuthenticated, user } = useSelector(
     (state) => state.userAuth
   );
-  // console.log(user)
-
-  // const dispatch = useDispatch();
-
-  // useEffect(()=>{
-  //   dispatch(checkUserAuth())
-  // }, [dispatch])
+  console.log(user);
 
   if (!isAuthChecked) {
     return <Preloader />;
@@ -39,14 +31,6 @@ export const ProtectedRoute = ({
   if (!onlyUnAuth && !user) {
     return <Navigate to='/login' state={{ from: location }} />;
   }
-
-  // if(onlyUnAuth && !user){
-
-  // }
-
-  // if (user === null) {
-  //   return <Navigate to='/login'/>;
-  // }
 
   return component;
 };

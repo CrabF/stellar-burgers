@@ -16,7 +16,7 @@ export const BurgerConstructor: FC = () => {
   );
 
   const { isAuthenticated } = useSelector((state) => state.userAuth);
-
+  console.log(isAuthenticated);
   const dispatch = useDispatch();
   const constructorItems = {
     bun,
