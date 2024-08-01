@@ -4,11 +4,12 @@ import { useLocation } from 'react-router-dom';
 import { BurgerIngredientUI } from '@ui';
 import { TBurgerIngredientProps } from './type';
 import { useDispatch } from '../../services/store';
-import { addIngredients, addBun } from '../../services/slices/burgerConstructorSlice';
+import {
+  addIngredients,
+  addBun
+} from '../../services/slices/burgerConstructorSlice';
 import { nanoid } from '@reduxjs/toolkit';
 import { TConstructorIngredient } from '@utils-types';
-
-
 
 export const BurgerIngredient: FC<TBurgerIngredientProps> = memo(
   ({ ingredient, count }) => {
@@ -21,11 +22,11 @@ export const BurgerIngredient: FC<TBurgerIngredientProps> = memo(
         id: nanoid()
       };
 
-      dispatch(()=>{
-        if(ingredient.type === 'bun') {
-          dispatch(addBun({ingredient}))
+      dispatch(() => {
+        if (ingredient.type === 'bun') {
+          dispatch(addBun({ ingredient }));
         } else {
-          dispatch(addIngredients({ingredient: constructorIngredient}));
+          dispatch(addIngredients({ ingredient: constructorIngredient }));
         }
       });
     };

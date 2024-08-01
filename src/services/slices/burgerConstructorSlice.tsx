@@ -1,11 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { TConstructorIngredient, TIngredient, TOrder } from "@utils-types";
+import { createSlice } from '@reduxjs/toolkit';
+import { TConstructorIngredient, TIngredient, TOrder } from '@utils-types';
 
 interface TburgerConstructorState {
-  bun: TBunIngredient | null,
-  ingredients: TConstructorIngredient[],
-  orderRequest: boolean,
-  orderModalData: TOrder | null
+  bun: TBunIngredient | null;
+  ingredients: TConstructorIngredient[];
+  orderRequest: boolean;
+  orderModalData: TOrder | null;
 }
 
 type TBunIngredient = TIngredient & {
@@ -17,39 +17,45 @@ const initialState: TburgerConstructorState = {
   ingredients: [],
   orderRequest: false,
   orderModalData: null
-}
+};
 
 const burgerConstructorSlice = createSlice({
   name: 'burgerConstructor',
   initialState,
   reducers: {
-    addIngredients: (state, action)=>{
-        state.ingredients.push(action.payload.ingredient);
+    addIngredients: (state, action) => {
+      state.ingredients.push(action.payload.ingredient);
     },
-    addBun: (state, action)=>{
+    addBun: (state, action) => {
       state.bun = action.payload.ingredient;
     },
-    deleteIngredient: (state, action)=>{
-      state.ingredients = state.ingredients.filter((item)=>{
-        return item.id != action.payload.id
-      })
+    deleteIngredient: (state, action) => {
+      state.ingredients = state.ingredients.filter(
+        (item) => item.id != action.payload.id
+      );
     },
-    addOrderRequest: (state, action) =>{
-      state.orderRequest = action.payload
+    addOrderRequest: (state, action) => {
+      state.orderRequest = action.payload;
     },
-    addModalData: (state, action) =>{
-      state.orderModalData = action.payload
+    addModalData: (state, action) => {
+      state.orderModalData = action.payload;
     },
-    clearConstructor: (state) =>{
+    clearConstructor: (state) => {
       state.bun = null;
-      state.ingredients = [],
-      state.orderModalData = null,
-      state.orderRequest = false
+      (state.ingredients = []),
+        (state.orderModalData = null),
+        (state.orderRequest = false);
     }
   }
-})
+});
 
-export const { addIngredients, addBun, deleteIngredient, addOrderRequest, addModalData, clearConstructor } = burgerConstructorSlice.actions;
+export const {
+  addIngredients,
+  addBun,
+  deleteIngredient,
+  addOrderRequest,
+  addModalData,
+  clearConstructor
+} = burgerConstructorSlice.actions;
 
 export default burgerConstructorSlice.reducer;
-

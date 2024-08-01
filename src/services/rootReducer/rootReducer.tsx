@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   ingredients: ingredientsSliceReducer,
   burgerConstructor: burgerConstructorSliceReducer,
   userAuth: userAuthSliceReducer,
-  ordersInfo: orderInfoSliceReducer,
+  ordersInfo: orderInfoSliceReducer
 });
 
 export default rootReducer;

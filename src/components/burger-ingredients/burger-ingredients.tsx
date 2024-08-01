@@ -6,20 +6,18 @@ import { BurgerIngredientsUI } from '../ui/burger-ingredients';
 
 import { useSelector } from '../../services/store';
 
-
 export const BurgerIngredients: FC = () => {
+  const { ingredients } = useSelector((state) => state.ingredients);
 
-  const { ingredients } = useSelector(state => state.ingredients);
-
-  const buns: TIngredient[] = ingredients.filter((ingredient)=>{
-    return ingredient.type === 'bun'
-  });
-  const mains: TIngredient[] = ingredients.filter((ingredient)=>{
-    return ingredient.type === 'main'
-  });
-  const sauces: TIngredient[] = ingredients.filter((ingredient)=>{
-    return ingredient.type === 'sauce'
-  });
+  const buns: TIngredient[] = ingredients.filter(
+    (ingredient) => ingredient.type === 'bun'
+  );
+  const mains: TIngredient[] = ingredients.filter(
+    (ingredient) => ingredient.type === 'main'
+  );
+  const sauces: TIngredient[] = ingredients.filter(
+    (ingredient) => ingredient.type === 'sauce'
+  );
 
   const [currentTab, setCurrentTab] = useState<TTabMode>('bun');
   const titleBunRef = useRef<HTMLHeadingElement>(null);

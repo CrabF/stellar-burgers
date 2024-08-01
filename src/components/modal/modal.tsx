@@ -7,13 +7,12 @@ import { useNavigate } from 'react-router-dom';
 
 const modalRoot = document.getElementById('modals');
 
-export const Modal: FC<TModalProps> = memo(({title, onClose, children }) => {
-
+export const Modal: FC<TModalProps> = memo(({ title, onClose, children }) => {
   const navigate = useNavigate();
-  const closeModal = ()=>{
+  const closeModal = () => {
     onClose?.();
-    navigate(-1)
-  }
+    navigate(-1);
+  };
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {

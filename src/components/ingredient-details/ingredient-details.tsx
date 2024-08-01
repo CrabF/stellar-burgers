@@ -6,18 +6,17 @@ import { useSelector } from '../../services/store';
 
 export const IngredientDetails: FC = () => {
   /** TODO: взять переменную из стора */
-  const {ingredients} = useSelector(state=> state.ingredients)
- 
-  const params = useParams()
+  const { ingredients } = useSelector((state) => state.ingredients);
 
-  const ingredientDataArray = ingredients.filter((ingredient)=>{
-      if(ingredient._id === params.id){
-        return ingredient
-      } 
-    })
+  const params = useParams();
 
-    const [ingredientData] = ingredientDataArray
+  const ingredientDataArray = ingredients.filter((ingredient) => {
+    if (ingredient._id === params.id) {
+      return ingredient;
+    }
+  });
 
+  const [ingredientData] = ingredientDataArray;
 
   if (!ingredientData) {
     return <Preloader />;

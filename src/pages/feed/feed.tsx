@@ -5,17 +5,23 @@ import { useDispatch, useSelector } from '../../services/store';
 import { getOrdersInfo } from '../../services/slices/ordersInfo';
 
 export const Feed: FC = () => {
-  const { orders } = useSelector(state=> state.ordersInfo);
+  const { orders } = useSelector((state) => state.ordersInfo);
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-    dispatch(getOrdersInfo())
+  useEffect(() => {
+    dispatch(getOrdersInfo());
   }, [dispatch]);
 
   if (!orders.length) {
-    return <Preloader />
+    return <Preloader />;
   }
- 
-   return <FeedUI orders={orders} handleGetFeeds={()=>{ dispatch(getOrdersInfo())}} />;
-  
+
+  return (
+    <FeedUI
+      orders={orders}
+      handleGetFeeds={() => {
+        dispatch(getOrdersInfo());
+      }}
+    />
+  );
 };

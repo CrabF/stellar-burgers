@@ -7,13 +7,13 @@ import { useParams } from 'react-router-dom';
 
 export const OrderInfo: FC = () => {
   /** TODO: взять переменные orderData и ingredients из стора */
-  const { orders } = useSelector(state => state.ordersInfo);
-  const { ingredients } = useSelector(state => state.ingredients);
+  const { orders } = useSelector((state) => state.ordersInfo);
+  const { ingredients } = useSelector((state) => state.ingredients);
   const params = useParams();
-  
-  const targetOrder = orders.find((elem)=>{
-    return elem.number == Number(params.number)
-  })
+
+  const targetOrder = orders.find(
+    (elem) => elem.number == Number(params.number)
+  );
 
   const orderData = targetOrder;
 
