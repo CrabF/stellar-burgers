@@ -17,7 +17,6 @@ export const ProtectedRoute = ({
   const { isAuthChecked, isAuthenticated, user } = useSelector(
     (state) => state.userAuth
   );
-  console.log(user);
 
   if (!isAuthChecked) {
     return <Preloader />;

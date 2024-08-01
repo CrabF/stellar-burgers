@@ -6,7 +6,6 @@ import { useSelector } from '../../services/store';
 import { useParams } from 'react-router-dom';
 
 export const OrderInfo: FC = () => {
-  /** TODO: взять переменные orderData и ingredients из стора */
   const { orders } = useSelector((state) => state.ordersInfo);
   const { ingredients } = useSelector((state) => state.ingredients);
   const params = useParams();
@@ -17,9 +16,6 @@ export const OrderInfo: FC = () => {
 
   const orderData = targetOrder;
 
-  // const ingredients: TIngredient[] = [];
-
-  /* Готовим данные для отображения */
   const orderInfo = useMemo(() => {
     if (!orderData || !ingredients.length) return null;
 
