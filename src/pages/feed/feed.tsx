@@ -12,14 +12,10 @@ export const Feed: FC = () => {
     dispatch(getOrdersInfo())
   }, [dispatch]);
 
-  function updateInfoOrders() {
-    dispatch(getOrdersInfo())
-  }
-
   if (!orders.length) {
-    return <div><Preloader /></div>
+    return <Preloader />
   }
  
-   return <div><FeedUI orders={orders} handleGetFeeds={updateInfoOrders} /></div>
+   return <FeedUI orders={orders} handleGetFeeds={()=>{ dispatch(getOrdersInfo())}} />;
   
 };

@@ -13,12 +13,16 @@ export const registerUser = createAsyncThunk(
 export const checkUserAuth = createAsyncThunk(
   'user/checkUser',
   async (_, { dispatch }) => {    
-    if (localStorage.getItem('refreshToken')) {
+    // localStorage.getItem('refreshToken')
+    // if(getCookie('accessToken'))
+    if (getCookie('accessToken')) {
       getUserApi()
         .then((data)=>{
           dispatch(setUserInfo(data.user));
-          dispatch(authChecked(true));
           dispatch(isUserAuthenticated(true))
+        })
+        .finally(()=>{
+          dispatch(authChecked(true));
         })
     } else {
       dispatch(authChecked(true));

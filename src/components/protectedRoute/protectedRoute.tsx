@@ -6,30 +6,48 @@ import { checkUserAuth } from '../../services/slices/userAuthSlice';
 import { getUserApi } from '@api';
 
 type ProtectedRouteProps = {
-  children: React.JSX.Element;
+  onlyUnAuth?: boolean,
+  component: React.JSX.Element;
 }
 
-export const ProtectedRoute = ({children}:ProtectedRouteProps): React.JSX.Element=>{
+export const ProtectedRoute = ({onlyUnAuth = false, component}:ProtectedRouteProps): React.JSX.Element=>{
   const location = useLocation();
-  console.log(location, 
-    'лока')
 
   const {isAuthChecked, isAuthenticated, user} = useSelector(state=> state.userAuth);
+  // console.log(user)
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // useEffect(()=>{
   //   dispatch(checkUserAuth())
   // }, [dispatch])
   
-  // if (!isAuthChecked) {
-  //   return <Preloader />;
+  if (!isAuthChecked) {
+    return <Preloader />;
+  }
+
+  if(onlyUnAuth && user){
+    const { from } = location.state ?? {from: {pathname: '/'}};
+    return <Navigate to= {from} />
+  }
+
+  if(!onlyUnAuth && !user){
+    return <Navigate to='/login' state={{from: location}} />
+  }
+
+  // if(onlyUnAuth && !user){
+
   // }
 
-  // if (!user) {
-  //   return <Navigate replace to='/login'/>;
+  // if (user === null) {
+  //   return <Navigate to='/login'/>;
   // }
   
   
-  return children;
+  return component;
+}
+
+export const OnlyAuth = ProtectedRoute;
+export const OnlyUnAuth = ({component}: {component: React.JSX.Element}): React.JSX.Element=>{
+  return <ProtectedRoute onlyUnAuth={true} component={component} />
 }
