@@ -4,7 +4,7 @@ import { useSelector } from '../../services/store';
 
 export const Profile: FC = () => {
   /** TODO: взять переменную из стора */
-  // const { user: oo } = useSelector(state=> state.userAuth);
+  // const { user } = useSelector(state=> state.userAuth);
   // console.log(oo)
   const user = {
     name: '',

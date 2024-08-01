@@ -1,6 +1,6 @@
 import { getFeedsApi } from "@api";
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { TOrder, TOrdersData } from "@utils-types";
+import { TOrdersData } from "@utils-types";
 
 export const getOrdersInfo = createAsyncThunk(
   "feed/getOrders",
@@ -9,15 +9,10 @@ export const getOrdersInfo = createAsyncThunk(
   },
 );
 
-type TIsLoading ={
-  isLoading: boolean
-};
-
-const initialState: TOrdersData & TIsLoading = {
+const initialState: TOrdersData  = {
   orders: [],
   total: 0,
   totalToday: 0,
-  isLoading: false
 };
 
 const ordersInfoSlice = createSlice({
@@ -27,16 +22,14 @@ const ordersInfoSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(getOrdersInfo.pending , (state, action) =>{
-        state.isLoading = true
+        state.orders = []
       })
       .addCase(getOrdersInfo.fulfilled , (state, action: PayloadAction<TOrdersData>) =>{
         state.orders = action.payload.orders;
         state.total = action.payload.total;
         state.totalToday = action.payload.totalToday;
-        state.isLoading = false
       })
   },
 })
 
-// export const {  } = ordersInfoSlice.actions;
 export default ordersInfoSlice.reducer;

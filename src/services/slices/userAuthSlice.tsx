@@ -7,14 +7,6 @@ export const registerUser = createAsyncThunk(
   "user/loginUser",
   async (data: TRegisterData)=>{
     return registerUserApi(data)
-      // .then((res)=>{
-      //   setCookie('accessToken', res.accessToken);
-      //   localStorage.setItem('refreshToken', res.refreshToken);
-        
-      // })
-      // .catch((error)=>{
-      //   console.log(error)
-      // })
   } 
 );
 

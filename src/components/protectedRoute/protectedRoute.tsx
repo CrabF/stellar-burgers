@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from '../../services/store';
 import { Preloader } from '../ui/preloader/preloader';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { checkUserAuth } from '../../services/slices/userAuthSlice';
 import { getUserApi } from '@api';
 
@@ -18,17 +18,18 @@ export const ProtectedRoute = ({children}:ProtectedRouteProps): React.JSX.Elemen
 
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-    dispatch(checkUserAuth())
-  }, [dispatch])
+  // useEffect(()=>{
+  //   dispatch(checkUserAuth())
+  // }, [dispatch])
   
-  if (!isAuthChecked) {
-    return <Preloader />;
-  }
+  // if (!isAuthChecked) {
+  //   return <Preloader />;
+  // }
 
   // if (!user) {
   //   return <Navigate replace to='/login'/>;
   // }
+  
   
   return children;
 }

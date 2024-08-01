@@ -26,12 +26,13 @@ const App = () => {
     <AppHeader />
       <Routes>
         <Route path='/' element={<div className={styles.app}><ConstructorPage /></div>}></Route>
-        <Route path='/feed' element={<Feed />}></Route>
+        
         <Route path='/login' element={<ProtectedRoute><Login /></ProtectedRoute>}></Route>
         <Route path='/register' element={<ProtectedRoute><Register /></ProtectedRoute>}></Route>
         <Route path='/forgot-password' element={<ProtectedRoute><ForgotPassword /></ProtectedRoute>}></Route>
         <Route path='/reset-password' element={<ProtectedRoute><ResetPassword /></ProtectedRoute>}></Route>
         <Route path='/profile' element={<ProtectedRoute><Profile /></ProtectedRoute>}></Route>
+        <Route path='/feed' element={<ProtectedRoute><Feed /></ProtectedRoute>}></Route>
         <Route path='/profile/orders' element={<ProtectedRoute><ProfileOrders /></ProtectedRoute>}></Route>
         <Route path='*' element={<NotFound404 />}></Route>
         <Route path='/feed/:number' element={<Modal title={''}><OrderInfo /></Modal>}></Route>
