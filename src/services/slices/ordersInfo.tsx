@@ -28,7 +28,9 @@ const ordersInfoSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(getOrdersInfo.pending, (state, action) => {})
+      .addCase(getOrdersInfo.pending, (state, action) => {
+        state.orders = [];
+      })
       .addCase(
         getOrdersInfo.fulfilled,
         (state, action: PayloadAction<TOrdersData>) => {
@@ -37,7 +39,9 @@ const ordersInfoSlice = createSlice({
           state.totalToday = action.payload.totalToday;
         }
       )
-      .addCase(getUserOrders.pending, (state, action) => {})
+      .addCase(getUserOrders.pending, (state, action) => {
+        state.userOrders = [];
+      })
       .addCase(getUserOrders.fulfilled, (state, action) => {
         state.userOrders = action.payload;
       });
