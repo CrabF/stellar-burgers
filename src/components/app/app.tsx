@@ -77,9 +77,13 @@ const App = () => {
         <Route
           path='/profile/orders/:number'
           element={
-            <Modal title={''}>
-              <OrderInfo />
-            </Modal>
+            <OnlyAuth
+              component={
+                <Modal title={''}>
+                  <OrderInfo />
+                </Modal>
+              }
+            />
           }
         />
       </Routes>

@@ -13,13 +13,15 @@ export const getUserOrders = createAsyncThunk(
 
 type TUserOrders = {
   userOrders: TOrder[];
+  status: 'loading' | 'done';
 };
 
 const initialState: TOrdersData & TUserOrders = {
   orders: [],
   userOrders: [],
   total: 0,
-  totalToday: 0
+  totalToday: 0,
+  status: 'loading'
 };
 
 const ordersInfoSlice = createSlice({
@@ -40,10 +42,12 @@ const ordersInfoSlice = createSlice({
         }
       )
       .addCase(getUserOrders.pending, (state, action) => {
+        state.status = 'loading';
         state.userOrders = [];
       })
       .addCase(getUserOrders.fulfilled, (state, action) => {
         state.userOrders = action.payload;
+        state.status = 'done';
       });
   }
 });
