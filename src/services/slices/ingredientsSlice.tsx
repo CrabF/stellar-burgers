@@ -5,7 +5,7 @@ import { getIngredientsApi } from '../../utils/burger-api';
 interface TIngredientsState {
   ingredients: Array<TIngredient>;
   loading: boolean;
-  error: string | null;
+  error?: string | null;
 }
 
 export const getIngredients = createAsyncThunk(
@@ -13,7 +13,7 @@ export const getIngredients = createAsyncThunk(
   async () => getIngredientsApi()
 );
 
-const initialState: TIngredientsState = {
+export const initialState: TIngredientsState = {
   ingredients: [],
   loading: false,
   error: null
@@ -35,7 +35,7 @@ const ingredientsSlice = createSlice({
       })
       .addCase(getIngredients.rejected, (state, action) => {
         state.loading = false;
-        state.error = 'Error';
+        state.error = action.error?.message;
       });
   }
 });
