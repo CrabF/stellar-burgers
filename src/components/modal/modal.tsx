@@ -3,13 +3,20 @@ import ReactDOM from 'react-dom';
 
 import { TModalProps } from './type';
 import { ModalUI } from '@ui';
+import { useNavigate } from 'react-router-dom';
 
 const modalRoot = document.getElementById('modals');
 
 export const Modal: FC<TModalProps> = memo(({ title, onClose, children }) => {
+  const navigate = useNavigate();
+  const closeModal = () => {
+    onClose?.();
+    navigate(-1);
+  };
+
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
-      e.key === 'Escape' && onClose();
+      e.key === 'Escape' && onClose?.();
     };
 
     document.addEventListener('keydown', handleEsc);
@@ -19,7 +26,7 @@ export const Modal: FC<TModalProps> = memo(({ title, onClose, children }) => {
   }, [onClose]);
 
   return ReactDOM.createPortal(
-    <ModalUI title={title} onClose={onClose}>
+    <ModalUI title={title} onClose={closeModal}>
       {children}
     </ModalUI>,
     modalRoot as HTMLDivElement
