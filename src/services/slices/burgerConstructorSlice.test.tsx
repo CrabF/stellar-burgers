@@ -298,5 +298,6 @@ describe('позитивные тесты burgerConstructorSlice', () => {
     console.log(newState.ingredients)
     // expect(newState.ingredients[1]).toEqual(mockInitialState.ingredients[0]);
     // expect(newState.ingredients[0]).toEqual(mockInitialState.ingredients[1]);
+    //check
   });
 });
