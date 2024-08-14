@@ -8,7 +8,7 @@ import {
   addModalData,
   addOrderRequest,
   clearConstructor
-} from '../../services/slices/burgerConstructorSlice';
+} from '../../services/slices/BurgerConstructorSlice';
 
 export const BurgerConstructor: FC = () => {
   const { ingredients, bun, orderRequest, orderModalData } = useSelector(

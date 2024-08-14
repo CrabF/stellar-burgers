@@ -6,7 +6,7 @@ import {
   isUserAuthenticated,
   setLoginError,
   setUserInfo
-} from '../../services/slices/userAuthSlice';
+} from '../../services/slices/UserAuthSlice';
 import { useNavigate } from 'react-router-dom';
 import { loginUserApi } from '@api';
 import { setCookie } from '../../utils/cookie';

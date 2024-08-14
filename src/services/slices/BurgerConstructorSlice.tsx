@@ -50,17 +50,20 @@ const burgerConstructorSlice = createSlice({
       const ingredientIndex = state.ingredients.findIndex(
         (item) => item.id === action.payload
       );
-      const temp = state.ingredients[ingredientIndex];
-      state.ingredients.splice(ingredientIndex, 1);
-      state.ingredients.splice(ingredientIndex + 1, 0, temp);
+      const newArrayIngredientds = [...state.ingredients];
+      const [removed] = newArrayIngredientds.splice(ingredientIndex, 1);
+      newArrayIngredientds.splice(ingredientIndex + 1, 0, removed);
+      state.ingredients = newArrayIngredientds;
     },
     moveIngredientUp: (state, action) => {
       const ingredientIndex = state.ingredients.findIndex(
         (item) => item.id === action.payload
       );
-      const temp = state.ingredients[ingredientIndex];
-      state.ingredients.splice(ingredientIndex, 1);
-      state.ingredients.splice(ingredientIndex - 1, 0, temp);
+
+      const newArrayIngredientds = [...state.ingredients];
+      const [removed] = newArrayIngredientds.splice(ingredientIndex, 1);
+      newArrayIngredientds.splice(ingredientIndex - 1, 0, removed);
+      state.ingredients = newArrayIngredientds;
     }
   }
 });
