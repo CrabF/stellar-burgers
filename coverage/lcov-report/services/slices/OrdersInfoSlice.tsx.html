@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for services/slices/burgerConstructorSlice.tsx</title>
+    <title>Code coverage report for services/slices/OrdersInfoSlice.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">services/slices</a> burgerConstructorSlice.tsx</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">services/slices</a> OrdersInfoSlice.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">98.55% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>82/82</span>
+                <span class='fraction'>68/69</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>11/11</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>8/8</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">98.55% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>82/82</span>
+                <span class='fraction'>68/69</span>
             </div>
         
             
@@ -132,24 +132,12 @@
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a>
 <a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a>
-<a name='L71'></a><a href='#L71'>71</a>
-<a name='L72'></a><a href='#L72'>72</a>
-<a name='L73'></a><a href='#L73'>73</a>
-<a name='L74'></a><a href='#L74'>74</a>
-<a name='L75'></a><a href='#L75'>75</a>
-<a name='L76'></a><a href='#L76'>76</a>
-<a name='L77'></a><a href='#L77'>77</a>
-<a name='L78'></a><a href='#L78'>78</a>
-<a name='L79'></a><a href='#L79'>79</a>
-<a name='L80'></a><a href='#L80'>80</a>
-<a name='L81'></a><a href='#L81'>81</a>
-<a name='L82'></a><a href='#L82'>82</a>
-<a name='L83'></a><a href='#L83'>83</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L70'></a><a href='#L70'>70</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -182,7 +170,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -214,101 +201,75 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { createSlice } from '@reduxjs/toolkit';
-import { TConstructorIngredient, TIngredient, TOrder } from '@utils-types';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { getFeedsApi, getOrdersApi } from '../../utils/burger-api';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { TOrder, TOrdersData } from '@utils-types';
 &nbsp;
-export interface TburgerConstructorState {
-  bun: TBunIngredient | null;
-  ingredients: TConstructorIngredient[];
-  orderRequest: boolean;
-  orderModalData: TOrder | null;
-}
+export const getOrdersInfo = createAsyncThunk('feed/getOrders', async () =&gt;
+<span class="cstat-no" title="statement not covered" >  getFeedsApi()</span>
+);
 &nbsp;
-export type TBunIngredient = TIngredient &amp; {
-  type: 'bun';
+export const getUserOrders = createAsyncThunk(
+  'profile/getUserOrders',
+  async () =&gt; getOrdersApi()
+);
+&nbsp;
+type TUserOrders = {
+  userOrders: TOrder[];
+  status: 'loading' | 'done';
+  error?: string | null;
 };
 &nbsp;
-export const initialState: TburgerConstructorState = {
-  bun: null,
-  ingredients: [],
-  orderRequest: false,
-  orderModalData: null
+export const initialState: TOrdersData &amp; TUserOrders = {
+  orders: [],
+  userOrders: [],
+  total: 0,
+  totalToday: 0,
+  status: 'loading',
+  error: null
 };
 &nbsp;
-const burgerConstructorSlice = createSlice({
-  name: 'burgerConstructor',
-  initialState,
-  reducers: {
-    addIngredients: (state, action) =&gt; {
-      state.ingredients.push(action.payload.ingredient);
-    },
-    addBun: (state, action) =&gt; {
-      state.bun = action.payload.ingredient;
-    },
-    deleteIngredient: (state, action) =&gt; {
-      state.ingredients = state.ingredients.filter(
-        (item) =&gt; item.id != action.payload.id
-      );
-    },
-    addOrderRequest: (state, action) =&gt; {
-      state.orderRequest = action.payload;
-    },
-    addModalData: (state, action) =&gt; {
-      state.orderModalData = action.payload;
-    },
-    clearConstructor: (state) =&gt; {
-      state.bun = null;
-      state.ingredients = [];
-      state.orderModalData = null;
-      state.orderRequest = false;
-    },
-    moveIngredientDown: (state, action) =&gt; {
-      const ingredientIndex = state.ingredients.findIndex(
-        (item) =&gt; item.id === action.payload
-      );
-      const newArrayIngredientds = [...state.ingredients];
-      const [removed] = newArrayIngredientds.splice(ingredientIndex, 1);
-      newArrayIngredientds.splice(ingredientIndex + 1, 0, removed);
-      state.ingredients = newArrayIngredientds;
-    },
-    moveIngredientUp: (state, action) =&gt; {
-      const ingredientIndex = state.ingredients.findIndex(
-        (item) =&gt; item.id === action.payload
-      );
-&nbsp;
-      const newArrayIngredientds = [...state.ingredients];
-      const [removed] = newArrayIngredientds.splice(ingredientIndex, 1);
-      newArrayIngredientds.splice(ingredientIndex - 1, 0, removed);
-      state.ingredients = newArrayIngredientds;
-    }
+const ordersInfoSlice = createSlice({
+  name: 'ordersInfo',
+  initialState: initialState,
+  reducers: {},
+  extraReducers(builder) {
+    builder
+      .addCase(getOrdersInfo.pending, (state) =&gt; {
+        state.orders = [];
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(
+        getOrdersInfo.fulfilled,
+        (state, action: PayloadAction&lt;TOrdersData&gt;) =&gt; {
+          state.orders = action.payload.orders;
+          state.total = action.payload.total;
+          state.totalToday = action.payload.totalToday;
+          state.status = 'done';
+        }
+      )
+      .addCase(getOrdersInfo.rejected, (state, action) =&gt; {
+        state.status = 'done';
+        state.error = action.error.message;
+      })
+      .addCase(getUserOrders.pending, (state) =&gt; {
+        state.status = 'loading';
+        state.userOrders = [];
+        state.error = null;
+      })
+      .addCase(getUserOrders.fulfilled, (state, action) =&gt; {
+        state.userOrders = action.payload;
+        state.status = 'done';
+      })
+      .addCase(getUserOrders.rejected, (state, action) =&gt; {
+        state.status = 'done';
+        state.error = action.error.message;
+      });
   }
 });
 &nbsp;
-export const {
-  addIngredients,
-  addBun,
-  deleteIngredient,
-  addOrderRequest,
-  addModalData,
-  clearConstructor,
-  moveIngredientDown,
-  moveIngredientUp
-} = burgerConstructorSlice.actions;
-&nbsp;
-export default burgerConstructorSlice.reducer;
+export default ordersInfoSlice.reducer;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -316,7 +277,7 @@ export default burgerConstructorSlice.reducer;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-08-14T13:00:23.708Z
+                at 2024-08-14T14:21:35.630Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

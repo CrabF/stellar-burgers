@@ -1,7 +1,4 @@
 import { describe, expect, test } from '@jest/globals';
-import rootReducer from './rootReducer';
+import rootReducer from './RootReducer';
 
-
-test('вернет ', () => {
-
-});
+test('вернет ', () => {});

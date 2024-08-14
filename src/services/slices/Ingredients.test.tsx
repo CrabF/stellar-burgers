@@ -1,7 +1,7 @@
 import ingredientsSlice, {
   getIngredients,
   initialState
-} from './ingredientsSlice';
+} from './IngredientsSlice';
 
 import { describe, test, expect } from '@jest/globals';
 
@@ -18,8 +18,7 @@ describe('тесты состояний thunk getIngredients', () => {
       price: 1255,
       image: 'https://code.s3.yandex.net/react/code/bun-02.png',
       image_mobile: 'https://code.s3.yandex.net/react/code/bun-02-mobile.png',
-      image_large: 'https://code.s3.yandex.net/react/code/bun-02-large.png',
-      __v: 0
+      image_large: 'https://code.s3.yandex.net/react/code/bun-02-large.png'
     },
     {
       _id: '643d69a5c3f7b9001cfa0941',
@@ -32,8 +31,7 @@ describe('тесты состояний thunk getIngredients', () => {
       price: 424,
       image: 'https://code.s3.yandex.net/react/code/meat-01.png',
       image_mobile: 'https://code.s3.yandex.net/react/code/meat-01-mobile.png',
-      image_large: 'https://code.s3.yandex.net/react/code/meat-01-large.png',
-      __v: 0
+      image_large: 'https://code.s3.yandex.net/react/code/meat-01-large.png'
     }
   ];
 

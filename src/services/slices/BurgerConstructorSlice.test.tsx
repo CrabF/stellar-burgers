@@ -11,7 +11,7 @@ import burgerConstructorSlice, {
   moveIngredientUp,
   TburgerConstructorState,
   TBunIngredient
-} from './burgerConstructorSlice';
+} from './BurgerConstructorSlice';
 
 import { describe, test, expect } from '@jest/globals';
 
@@ -29,13 +29,6 @@ describe('позитивные тесты burgerConstructorSlice', () => {
     image_mobile: 'https://code.s3.yandex.net/react/code/bun-02-mobile.png',
     image_large: 'https://code.s3.yandex.net/react/code/bun-02-large.png'
   };
-
-  
-
-  // bun: null,
-  // ingredients: [],
-  // orderRequest: false,
-  // orderModalData: null
 
   let mockInitialState = initialState;
 
@@ -235,7 +228,6 @@ describe('позитивные тесты burgerConstructorSlice', () => {
   });
 
   test('проверка редьюсера moveIngredientUp', () => {
-
     const mockIngredients = [
       {
         id: '1',
@@ -248,7 +240,8 @@ describe('позитивные тесты burgerConstructorSlice', () => {
         calories: 643,
         price: 988,
         image: 'https://code.s3.yandex.net/react/code/meat-03.png',
-        image_mobile: 'https://code.s3.yandex.net/react/code/meat-03-mobile.png',
+        image_mobile:
+          'https://code.s3.yandex.net/react/code/meat-03-mobile.png',
         image_large: 'https://code.s3.yandex.net/react/code/meat-03-large.png'
       },
       {
@@ -262,19 +255,18 @@ describe('позитивные тесты burgerConstructorSlice', () => {
         calories: 2674,
         price: 3000,
         image: 'https://code.s3.yandex.net/react/code/meat-04.png',
-        image_mobile: 'https://code.s3.yandex.net/react/code/meat-04-mobile.png',
+        image_mobile:
+          'https://code.s3.yandex.net/react/code/meat-04-mobile.png',
         image_large: 'https://code.s3.yandex.net/react/code/meat-04-large.png'
-      },
+      }
     ];
-
 
     const mockInitialState = {
       bun: null,
-  ingredients: mockIngredients,
-  orderRequest: false,
-  orderModalData: null
-      
-    }
+      ingredients: mockIngredients,
+      orderRequest: false,
+      orderModalData: null
+    };
 
     const mockData = {
       id: '2',
@@ -288,16 +280,80 @@ describe('позитивные тесты burgerConstructorSlice', () => {
       price: 3000,
       image: 'https://code.s3.yandex.net/react/code/meat-04.png',
       image_mobile: 'https://code.s3.yandex.net/react/code/meat-04-mobile.png',
-      image_large: 'https://code.s3.yandex.net/react/code/meat-04-large.png',
+      image_large: 'https://code.s3.yandex.net/react/code/meat-04-large.png'
     };
 
-
-
-    const newState = burgerConstructorSlice(mockInitialState, moveIngredientUp(mockData));
+    const newState = burgerConstructorSlice(
+      mockInitialState,
+      moveIngredientUp(mockData)
+    );
     expect(newState.ingredients.length).toBe(2);
-    console.log(newState.ingredients)
-    // expect(newState.ingredients[1]).toEqual(mockInitialState.ingredients[0]);
-    // expect(newState.ingredients[0]).toEqual(mockInitialState.ingredients[1]);
-    //check
+    expect(newState.ingredients[1]).toEqual(mockInitialState.ingredients[0]);
+    expect(newState.ingredients[0]).toEqual(mockInitialState.ingredients[1]);
+  });
+
+  test('проверка редьюсера moveIngredientDown', () => {
+    const mockIngredients = [
+      {
+        id: '1',
+        _id: '643d69a5c3f7b9001cfa093e',
+        name: 'Филе Люминесцентного тетраодонтимформа',
+        type: 'main',
+        proteins: 44,
+        fat: 26,
+        carbohydrates: 85,
+        calories: 643,
+        price: 988,
+        image: 'https://code.s3.yandex.net/react/code/meat-03.png',
+        image_mobile:
+          'https://code.s3.yandex.net/react/code/meat-03-mobile.png',
+        image_large: 'https://code.s3.yandex.net/react/code/meat-03-large.png'
+      },
+      {
+        id: '2',
+        _id: '643d69a5c3f7b9001cfa0940',
+        name: 'Говяжий метеорит (отбивная)',
+        type: 'main',
+        proteins: 800,
+        fat: 800,
+        carbohydrates: 300,
+        calories: 2674,
+        price: 3000,
+        image: 'https://code.s3.yandex.net/react/code/meat-04.png',
+        image_mobile:
+          'https://code.s3.yandex.net/react/code/meat-04-mobile.png',
+        image_large: 'https://code.s3.yandex.net/react/code/meat-04-large.png'
+      }
+    ];
+
+    const mockInitialState = {
+      bun: null,
+      ingredients: mockIngredients,
+      orderRequest: false,
+      orderModalData: null
+    };
+
+    const mockData = {
+      id: '1',
+      _id: '643d69a5c3f7b9001cfa093e',
+      name: 'Филе Люминесцентного тетраодонтимформа',
+      type: 'main',
+      proteins: 44,
+      fat: 26,
+      carbohydrates: 85,
+      calories: 643,
+      price: 988,
+      image: 'https://code.s3.yandex.net/react/code/meat-03.png',
+      image_mobile: 'https://code.s3.yandex.net/react/code/meat-03-mobile.png',
+      image_large: 'https://code.s3.yandex.net/react/code/meat-03-large.png'
+    };
+
+    const newState = burgerConstructorSlice(
+      mockInitialState,
+      moveIngredientDown(mockData)
+    );
+    expect(newState.ingredients.length).toBe(2);
+    expect(newState.ingredients[0]).toEqual(mockInitialState.ingredients[1]);
+    expect(newState.ingredients[1]).toEqual(mockInitialState.ingredients[0]);
   });
 });
