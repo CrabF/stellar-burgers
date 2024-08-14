@@ -1,18 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { TConstructorIngredient, TIngredient, TOrder } from '@utils-types';
 
-export interface TburgerConstructorState {
+interface TburgerConstructorState {
   bun: TBunIngredient | null;
   ingredients: TConstructorIngredient[];
   orderRequest: boolean;
   orderModalData: TOrder | null;
 }
 
-export type TBunIngredient = TIngredient & {
+type TBunIngredient = TIngredient & {
   type: 'bun';
 };
 
-export const initialState: TburgerConstructorState = {
+const initialState: TburgerConstructorState = {
   bun: null,
   ingredients: [],
   orderRequest: false,
@@ -42,9 +42,9 @@ const burgerConstructorSlice = createSlice({
     },
     clearConstructor: (state) => {
       state.bun = null;
-      state.ingredients = [];
-      state.orderModalData = null;
-      state.orderRequest = false;
+      (state.ingredients = []),
+        (state.orderModalData = null),
+        (state.orderRequest = false);
     },
     moveIngredientDown: (state, action) => {
       const ingredientIndex = state.ingredients.findIndex(
