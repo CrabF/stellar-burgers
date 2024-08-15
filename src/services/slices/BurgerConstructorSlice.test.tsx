@@ -1,4 +1,3 @@
-import { TConstructorIngredient } from '@utils-types';
 import burgerConstructorSlice, {
   initialState,
   addIngredients,

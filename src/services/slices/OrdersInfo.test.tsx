@@ -73,7 +73,6 @@ describe('проверки thunk getOrdersInfo', () => {
       error: { message: 'Error' }
     };
 
-
     const newState = ordersInfoSlice(mockInitialState, action);
 
     expect(newState).toEqual({
@@ -87,8 +86,7 @@ describe('проверки thunk getOrdersInfo', () => {
   });
 });
 
-describe('проверка thunk getUserOrders',()=>{
-
+describe('проверка thunk getUserOrders', () => {
   let mockInitialState = initialState;
 
   const mockOrder = {
@@ -100,13 +98,6 @@ describe('проверка thunk getUserOrders',()=>{
     updatedAt: '2024-08-04T18:11:09.478Z',
     number: 48440
   };
-
-   // orders: [],
-  // userOrders: [],
-  // total: 0,
-  // totalToday: 0,
-  // status: 'loading',
-  // error:null
 
   afterEach(() => {
     mockInitialState = initialState;
@@ -138,7 +129,7 @@ describe('проверка thunk getUserOrders',()=>{
   test('проверка fulfilled getUserOrders', () => {
     const action = {
       type: getUserOrders.fulfilled.type,
-      payload: [mockOrder],
+      payload: [mockOrder]
     };
 
     const newState = ordersInfoSlice(mockInitialState, action);
@@ -170,4 +161,4 @@ describe('проверка thunk getUserOrders',()=>{
       error: 'Error'
     });
   });
-})
+});
