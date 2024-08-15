@@ -3,7 +3,6 @@ import { RegisterUI } from '@ui-pages';
 import { useDispatch, useSelector } from '../../services/store';
 import { registerUser } from '../../services/slices/UserAuthSlice';
 import { Navigate } from 'react-router-dom';
-import { setCookie } from '../../utils/cookie';
 import { Preloader } from '@ui';
 
 export const Register: FC = () => {
