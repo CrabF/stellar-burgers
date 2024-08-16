@@ -5,18 +5,18 @@ import ordersInfoSlice, {
   getUserOrders
 } from './OrdersInfoSlice';
 
+const mockOrder = {
+  _id: '66afc43c119d45001b4fd954',
+  ingredients: ['643d69a5c3f7b9001cfa093d', '643d69a5c3f7b9001cfa093d'],
+  status: 'done',
+  name: 'Флюоресцентный бургер',
+  createdAt: '2024-08-04T18:11:08.988Z',
+  updatedAt: '2024-08-04T18:11:09.478Z',
+  number: 48440
+};
+
 describe('проверки thunk getOrdersInfo', () => {
   let mockInitialState = initialState;
-
-  const mockOrder = {
-    _id: '66afc43c119d45001b4fd954',
-    ingredients: ['643d69a5c3f7b9001cfa093d', '643d69a5c3f7b9001cfa093d'],
-    status: 'done',
-    name: 'Флюоресцентный бургер',
-    createdAt: '2024-08-04T18:11:08.988Z',
-    updatedAt: '2024-08-04T18:11:09.478Z',
-    number: 48440
-  };
 
   afterEach(() => {
     mockInitialState = initialState;
@@ -30,16 +30,16 @@ describe('проверки thunk getOrdersInfo', () => {
 
     mockInitialState = {
       ...mockInitialState,
-      orders: [mockOrder]
+      orders: [mockOrder],
+      status: 'done',
+      error: 'Error'
     };
 
     const newState = ordersInfoSlice(mockInitialState, action);
 
     expect(newState).toEqual({
+      ...mockInitialState,
       orders: [],
-      userOrders: [],
-      total: 0,
-      totalToday: 0,
       status: 'loading',
       error: null
     });
@@ -58,12 +58,11 @@ describe('проверки thunk getOrdersInfo', () => {
     const newState = ordersInfoSlice(mockInitialState, action);
 
     expect(newState).toEqual({
+      ...mockInitialState,
       orders: [mockOrder],
-      userOrders: [],
       total: 10,
       totalToday: 110,
-      status: 'done',
-      error: null
+      status: 'done'
     });
   });
 
@@ -76,10 +75,7 @@ describe('проверки thunk getOrdersInfo', () => {
     const newState = ordersInfoSlice(mockInitialState, action);
 
     expect(newState).toEqual({
-      orders: [],
-      userOrders: [],
-      total: 0,
-      totalToday: 0,
+      ...mockInitialState,
       status: 'done',
       error: 'Error'
     });
@@ -88,16 +84,6 @@ describe('проверки thunk getOrdersInfo', () => {
 
 describe('проверка thunk getUserOrders', () => {
   let mockInitialState = initialState;
-
-  const mockOrder = {
-    _id: '66afc43c119d45001b4fd954',
-    ingredients: ['643d69a5c3f7b9001cfa093d', '643d69a5c3f7b9001cfa093d'],
-    status: 'done',
-    name: 'Флюоресцентный бургер',
-    createdAt: '2024-08-04T18:11:08.988Z',
-    updatedAt: '2024-08-04T18:11:09.478Z',
-    number: 48440
-  };
 
   afterEach(() => {
     mockInitialState = initialState;
@@ -111,16 +97,16 @@ describe('проверка thunk getUserOrders', () => {
 
     mockInitialState = {
       ...mockInitialState,
-      userOrders: [mockOrder]
+      userOrders: [mockOrder],
+      status: 'done',
+      error: 'Error'
     };
 
     const newState = ordersInfoSlice(mockInitialState, action);
 
     expect(newState).toEqual({
-      orders: [],
+      ...mockInitialState,
       userOrders: [],
-      total: 0,
-      totalToday: 0,
       status: 'loading',
       error: null
     });
@@ -135,12 +121,9 @@ describe('проверка thunk getUserOrders', () => {
     const newState = ordersInfoSlice(mockInitialState, action);
 
     expect(newState).toEqual({
-      orders: [],
+      ...mockInitialState,
       userOrders: [mockOrder],
-      total: 0,
-      totalToday: 0,
-      status: 'done',
-      error: null
+      status: 'done'
     });
   });
 
@@ -153,10 +136,7 @@ describe('проверка thunk getUserOrders', () => {
     const newState = ordersInfoSlice(mockInitialState, action);
 
     expect(newState).toEqual({
-      orders: [],
-      userOrders: [],
-      total: 0,
-      totalToday: 0,
+      ...mockInitialState,
       status: 'done',
       error: 'Error'
     });

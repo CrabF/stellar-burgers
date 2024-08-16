@@ -25,15 +25,14 @@ describe('проверка thunk registerUser', () => {
 
     mockInitialState = {
       ...mockInitialState,
-      loginUserError: 'email or password are incorrect'
+      loginUserError: 'email or password are incorrect',
+      loginUserRequest: true
     };
 
     const newState = userAuthSlice(mockInitialState, action);
 
     expect(newState).toEqual({
-      isAuthChecked: false,
-      isAuthenticated: false,
-      user: null,
+      ...mockInitialState,
       loginUserError: undefined,
       loginUserRequest: true
     });
@@ -53,13 +52,13 @@ describe('проверка thunk registerUser', () => {
     const newState = userAuthSlice(mockInitialState, action);
 
     expect(newState).toEqual({
+      ...mockInitialState,
       isAuthChecked: true,
       isAuthenticated: true,
       user: {
         email: 'mail@.mail.ru',
         name: 'name'
       },
-      loginUserError: undefined,
       loginUserRequest: false
     });
   });
@@ -73,11 +72,8 @@ describe('проверка thunk registerUser', () => {
     const newState = userAuthSlice(mockInitialState, action);
 
     expect(newState).toEqual({
-      isAuthChecked: true,
-      isAuthenticated: false,
-      user: null,
-      loginUserError: undefined,
-      loginUserRequest: false
+      ...mockInitialState,
+      isAuthChecked: true
     });
   });
 });
@@ -107,6 +103,7 @@ describe('проверка редьюсеров userAuthSlice', () => {
     expect(newStateFalse.isAuthChecked).toBeFalsy();
     expect(newStateTrue.isAuthChecked).toBeTruthy();
   });
+
   test('проверка редьюсера setUserInfo', () => {
     const newState = userAuthSlice(mockInitialState, setUserInfo(mockUser));
 
@@ -142,6 +139,7 @@ describe('проверка редьюсеров userAuthSlice', () => {
 
     expect(newState.loginUserError).toBe('Error');
   });
+
   test('проверка редьюсера updateUserInfo', () => {
     mockInitialState = {
       ...mockInitialState,

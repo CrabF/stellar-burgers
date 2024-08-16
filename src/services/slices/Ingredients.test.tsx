@@ -49,9 +49,8 @@ describe('тесты состояний thunk getIngredients', () => {
 
     const newState = ingredientsSlice(mockInitialState, action);
     expect(newState).toEqual({
-      ingredients: [],
-      loading: true,
-      error: null
+      ...mockInitialState,
+      loading: true
     });
   });
 
@@ -64,9 +63,8 @@ describe('тесты состояний thunk getIngredients', () => {
     const newState = ingredientsSlice(mockInitialState, action);
 
     expect(newState).toEqual({
-      ingredients: expectedResult,
-      loading: false,
-      error: null
+      ...mockInitialState,
+      ingredients: expectedResult
     });
   });
 
@@ -78,8 +76,7 @@ describe('тесты состояний thunk getIngredients', () => {
 
     const newState = ingredientsSlice(mockInitialState, action);
     expect(newState).toEqual({
-      ingredients: [],
-      loading: false,
+      ...mockInitialState,
       error: 'Error'
     });
   });
