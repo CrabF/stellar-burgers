@@ -7,7 +7,7 @@ import { useDispatch } from '../../services/store';
 import {
   addIngredients,
   addBun
-} from '../../services/slices/burgerConstructorSlice';
+} from '../../services/slices/BurgerConstructorSlice';
 import { nanoid } from '@reduxjs/toolkit';
 import { TConstructorIngredient } from '@utils-types';
 

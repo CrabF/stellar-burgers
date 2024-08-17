@@ -6,9 +6,7 @@ import {
   useSelector as selectorHook
 } from 'react-redux';
 
-import rootReducer from './rootReducer/rootReducer';
-
-// const rootReducer = () => {}; // Заменить на импорт настоящего редьюсера
+import rootReducer from './rootReducer/RootReducer';
 
 const store = configureStore({
   reducer: rootReducer,
