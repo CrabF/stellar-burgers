@@ -1,19 +1,23 @@
-# Проектная работа 11-го спринта
+## Описание
+
+Фронтенд часть Космической бургерной, где вы можете собрать бургер из различных ингредиентов и заказать его. Также можно взглянуть на очередь ранее сделанных заказов, как своих, так и других пользователей.
+
+Были доработаны роутинги, подключение к бэку, авторизация и хранение в куках и локал сторе, валидация различных полей, сброс пароля, регистрация, поведение различных модалок, а также написаны юнит тесты и end-to-end тесты.
+
+Все коммиты и пулреквесты и ветки работы в свободном доступе, чтобы ознакомиться, как продвигался проект.
 
 [Макет](<https://www.figma.com/file/vIywAvqfkOIRWGOkfOnReY/React-Fullstack_-Проектные-задачи-(3-месяца)_external_link?type=design&node-id=0-1&mode=design>)
 
-[Чеклист](https://www.notion.so/praktikum/0527c10b723d4873aa75686bad54b32e?pvs=4)
+### Стек
+![TypeScript Badge](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff&style=plastic) ![React Badge](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=plastic) ![React Router Badge](https://img.shields.io/badge/React%20Router-CA4245?logo=reactrouter&logoColor=fff&style=plastic) ![Storybook](https://img.shields.io/badge/Storybook-FF4785?logo=storybook&logoColor=fff&style=plastic)![Git Badge](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=fff&style=plastic) ![ESLint Badge](https://img.shields.io/badge/ESLint-4B32C3?logo=eslint&logoColor=fff&style=plastic) ![stylelint Badge](https://img.shields.io/badge/stylelint-263238?logo=stylelint&logoColor=fff&style=plastic) ![Prettier Badge](https://img.shields.io/badge/Prettier-F7B93E?logo=prettier&logoColor=fff&style=plastic)
 
-## Этапы работы:
+### Запуск через NodeJS и npm
 
-1. Разверните проект и ознакомьтесь с кодом. Все необходимые вам компоненты уже созданы и лежат в папке `src/components`
-
-2. Настройте роутинг.
-
-3. Напишите функционал запросов данных с сервера, используя `Redux` и глобальный `store`. Сами "ручки" уже прописаны и лежат в `utils/burger-api.ts`
-
-4. Настройте авторизацию и создайте защищённые роуты.
+1. Установить [NodeJS 20+](https://nodejs.org/en)
+2. Поставить зависимости командой `npm i`
+3. Запустить dev-server командой `npm start`
+4. Приложение можно открыть по адресу http://localhost:3000
 
 ## Важно:
 
-Для корректной работы запросов к серверу необходимо добавить переменную BURGER_API_URL в окружение. Сама ссылка находится в файле `.env.example`.
+В работе содержится много HTML по-мнению гита из-за отчетов Cypress и Jest тестов.

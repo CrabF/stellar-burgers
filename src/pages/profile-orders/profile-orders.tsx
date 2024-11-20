@@ -2,11 +2,16 @@ import { ProfileOrdersUI } from '@ui-pages';
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from '../../services/store';
 import { Preloader } from '@ui';
-import { getOrdersInfo, getUserOrders } from '../../services/slices/ordersInfo';
+import {
+  getOrdersInfo,
+  getUserOrders
+} from '../../services/slices/OrdersInfoSlice';
 
 export const ProfileOrders: FC = () => {
   const dispatch = useDispatch();
-  const { userOrders, status } = useSelector((state) => state.ordersInfo);
+  const { userOrders, status, error } = useSelector(
+    (state) => state.ordersInfo
+  );
 
   useEffect(() => {
     dispatch(getUserOrders());
@@ -33,6 +38,10 @@ export const ProfileOrders: FC = () => {
         У вас не было заказов
       </div>
     );
+  }
+
+  if (error) {
+    return <div>Вот такая ошибка от сервера: {error}</div>;
   }
 
   return <ProfileOrdersUI orders={userOrders} />;

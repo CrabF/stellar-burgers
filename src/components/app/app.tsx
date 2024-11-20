@@ -14,14 +14,16 @@ import styles from './app.module.css';
 import { Routes, Route } from 'react-router-dom';
 
 import { useEffect } from 'react';
-import { getIngredients } from '../../services/slices/ingredientsSlice';
+import { getIngredients } from '../../services/slices/IngredientsSlice';
 
 import { AppHeader, IngredientDetails, Modal, OrderInfo } from '@components';
-import { useDispatch } from '../../services/store';
-import { checkUserAuth } from '../../services/slices/userAuthSlice';
+import { useDispatch, useSelector } from '../../services/store';
+import { checkUserAuth } from '../../services/slices/UserAuthSlice';
 import { OnlyAuth, OnlyUnAuth } from '../protectedRoute/protectedRoute';
 
 const App = () => {
+  const { error } = useSelector((state) => state.ingredients);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getIngredients());
@@ -30,6 +32,10 @@ const App = () => {
   useEffect(() => {
     dispatch(checkUserAuth());
   }, []);
+
+  if (error) {
+    return <div>Вот такая ошибка от сервера: {error}</div>;
+  }
 
   return (
     <div className={styles.app}>

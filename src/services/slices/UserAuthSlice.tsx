@@ -1,11 +1,20 @@
-import { TRegisterData, getUserApi, registerUserApi } from '@api';
+import {
+  TRegisterData,
+  getUserApi,
+  registerUserApi
+} from '../../utils/burger-api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getCookie, setCookie } from '../../utils/cookie';
 import { TUser } from '@utils-types';
 
 export const registerUser = createAsyncThunk(
   'user/loginUser',
-  async (data: TRegisterData) => registerUserApi(data)
+  async (data: TRegisterData) => {
+    const response = await registerUserApi(data);
+    setCookie('accessToken', response.accessToken);
+    localStorage.setItem('refreshToken', response.refreshToken);
+    return response;
+  }
 );
 
 export const checkUserAuth = createAsyncThunk(
@@ -40,7 +49,7 @@ export interface TError {
   message: string;
 }
 
-const initialState: TUserAuthState = {
+export const initialState: TUserAuthState = {
   isAuthChecked: false,
   isAuthenticated: false,
   user: null,
@@ -61,13 +70,7 @@ const userAuthSlice = createSlice({
     isUserAuthenticated: (state, action) => {
       state.isAuthenticated = action.payload;
     },
-    isUserLogin: (state, action) => {
-      state.loginUserRequest = action.payload;
-    },
     setLoginError: (state, action) => {
-      state.loginUserError = action.payload;
-    },
-    setUserLoginError: (state, action) => {
       state.loginUserError = action.payload;
     },
     updateUserInfo: (state, action) => {
@@ -76,7 +79,7 @@ const userAuthSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(registerUser.pending, (state, action) => {
+      .addCase(registerUser.pending, (state) => {
         state.loginUserRequest = true;
         state.loginUserError = undefined;
       })
@@ -85,12 +88,9 @@ const userAuthSlice = createSlice({
         state.loginUserRequest = false;
         state.isAuthenticated = true;
         state.isAuthChecked = true;
-        setCookie('accessToken', action.payload.accessToken);
-        localStorage.setItem('refreshToken', action.payload.refreshToken);
       })
-      .addCase(registerUser.rejected, (state, action) => {
+      .addCase(registerUser.rejected, (state) => {
         state.loginUserRequest = false;
-        // state.loginUserError = action.payload;
         state.isAuthChecked = true;
         state.isAuthenticated = false;
       });
@@ -102,7 +102,6 @@ export const {
   authChecked,
   setUserInfo,
   isUserAuthenticated,
-  isUserLogin,
   setLoginError,
   updateUserInfo
 } = userAuthSlice.actions;
